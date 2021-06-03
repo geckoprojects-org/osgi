@@ -4,7 +4,7 @@ import static org.junit.Assert.assertThrows;
 import static org.osgi.test.cases.feature.assertj.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.ID;
 
 
 public class FeatureIDTest {

@@ -25,10 +25,10 @@ import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.InstanceOfAssertFactory;
 import org.assertj.core.api.ListAssert;
 import org.assertj.core.api.MapAssert;
-import org.osgi.util.feature.Feature;
-import org.osgi.util.feature.FeatureBundle;
-import org.osgi.util.feature.FeatureConfiguration;
-import org.osgi.util.feature.FeatureExtension;
+import org.osgi.service.feature.Feature;
+import org.osgi.service.feature.FeatureBundle;
+import org.osgi.service.feature.FeatureConfiguration;
+import org.osgi.service.feature.FeatureExtension;
 
 /**
  * Abstract base class for {@link Feature} specific assertions.

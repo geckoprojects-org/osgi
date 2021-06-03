@@ -27,7 +27,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.osgi.util.feature.Feature;
+import org.osgi.service.feature.Feature;
 
 @ExtendWith(SoftAssertionsExtension.class)
 public class FeaturesConditionsAssertTest implements ConditionAssert {

@@ -25,12 +25,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.assertj.core.api.Condition;
-import org.osgi.util.feature.Feature;
-import org.osgi.util.feature.FeatureArtifact;
-import org.osgi.util.feature.FeatureBundle;
-import org.osgi.util.feature.FeatureConfiguration;
-import org.osgi.util.feature.FeatureExtension;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.Feature;
+import org.osgi.service.feature.FeatureArtifact;
+import org.osgi.service.feature.FeatureBundle;
+import org.osgi.service.feature.FeatureConfiguration;
+import org.osgi.service.feature.FeatureExtension;
+import org.osgi.service.feature.ID;
 
 
 public interface FeaturesConditions {
@@ -119,73 +119,74 @@ public interface FeaturesConditions {
 			return new Condition<>(f -> f.getVendor() == null, "vendor <null>");
 		}
 
-		//
-		// static Condition<Feature> categoriesNull() {
-		// return new Condition<>(f -> f.getCategories() ==
-		// null, "categories must be null");
-		// }
-		//
-		// static Condition<Feature> categories(String categories) {
-		// return new Condition<Feature>(f ->
-		// f.getCategories()
-		// ,categories), "categories must be %s", categories);
-		// }
-		//
-		// static Condition<Feature> categoriesMatches(String pattern) {
-		// return new Condition<Feature>(f ->
-		// f.getCategories()
-		// .matches(pattern), "categories must match %s", pattern);
-		// }
+		static Condition<Feature> categoriesNull() {
+			return new Condition<>(f -> f.getCategories() == null,
+					"categories must be null");
+		}
 
-		//
-		// static Condition<Feature> copyrightNull() {
-		// return new Condition<>(f -> f.getCopyright() ==
-		// null, "copyright must be null");
-		// }
-		//
-		// static Condition<Feature> copyright(String copyright) {
-		// return new Condition<Feature>(f ->
-		// f.getCopyright()
-		// ,copyright), "copyright must be %s", copyright);
-		// }
-		//
-		// static Condition<Feature> copyrightMatches(String pattern) {
-		// return new Condition<Feature>(f ->
-		// f.getCopyright()
-		// .matches(pattern), "copyright must match %s", pattern);
-		// }
+		static Condition<Feature> categoryContains(String category) {
+			return new Condition<Feature>(
+					f -> f.getCategories() != null
+							&& f.getCategories().contains(category),
+					"categories must be %s", category);
+		}
 
-		//
-		// static Condition<Feature> docURLNull() {
-		// return new Condition<>(f -> f.getFocURL() == null, "docURL must be
-		// null");
-		// }
-		//
-		// static Condition<Feature> docURL(String docURL) {
-		// return new Condition<Feature>(f -> f.getDocURL()
-		// ,docURL), "docURL must be %s", docURL);
-		// }
-		//
-		// static Condition<Feature> docURLMatches(String pattern) {
-		// return new Condition<Feature>(f -> f.getDocURL()
-		// .matches(pattern), "docURL must match %s", pattern);
-		// }
+		static Condition<Feature> categoryMatches(String pattern) {
+			return new Condition<Feature>(
+					f -> f.getCategories() != null && f.getCategories()
+							.stream()
+							.filter(c -> c.matches(pattern))
+							.findAny()
+							.isPresent(),
+					"categories must match %s", pattern);
+		}
 
-		//
-		// static Condition<Feature> scmNull() {
-		// return new Condition<>(f -> f.getSCM() == null,
-		// "scm must be null");
-		// }
-		//
-		// static Condition<Feature> scm(String scm) {
-		// return new Condition<Feature>(f -> f.getSCM()
-		// ,scm), "scm must be %s", scm);
-		// }
-		//
-		// static Condition<Feature> scmMatches(String pattern) {
-		// return new Condition<Feature>(f -> f.getSCM()
-		// .matches(pattern), "scm must match %s", pattern);
-		// }
+		static Condition<Feature> copyrightNull() {
+			return new Condition<>(f -> f.getCopyright() == null,
+					"copyright must be null");
+		}
+
+		static Condition<Feature> copyright(String copyright) {
+			return new Condition<Feature>(
+					f -> Objects.equals(f.getCopyright(), copyright),
+					"copyright must be %s", copyright);
+		}
+
+		static Condition<Feature> copyrightMatches(String pattern) {
+			return new Condition<Feature>(
+					f -> f.getCopyright().matches(pattern),
+					"copyright must match %s", pattern);
+		}
+
+		static Condition<Feature> docURLNull() {
+			return new Condition<>(f -> f.getDocURL() == null,
+					"docURL must be null");
+		}
+
+		static Condition<Feature> docURL(String docURL) {
+			return new Condition<Feature>(
+					f -> Objects.equals(f.getDocURL(), docURL),
+					"docURL must be %s", docURL);
+		}
+
+		static Condition<Feature> docURLMatches(String pattern) {
+			return new Condition<Feature>(f -> f.getDocURL().matches(pattern),
+					"docURL must match %s", pattern);
+		}
+
+		static Condition<Feature> scmNull() {
+			return new Condition<>(f -> f.getSCM() == null, "scm must be null");
+		}
+
+		static Condition<Feature> scm(String scm) {
+			return new Condition<Feature>(f -> Objects.equals(f.getSCM(), scm),
+					"scm must be %s", scm);
+		}
+
+		static Condition<Feature> scmMatches(String pattern) {
+			return new Condition<Feature>(f -> f.getSCM().matches(pattern),
+					"scm must match %s", pattern);
+		}
 	}
 
 	interface FeatureConfigurationConditions {

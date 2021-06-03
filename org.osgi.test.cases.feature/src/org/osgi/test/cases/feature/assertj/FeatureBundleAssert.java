@@ -18,7 +18,7 @@
 
 package org.osgi.test.cases.feature.assertj;
 
-import org.osgi.util.feature.FeatureBundle;
+import org.osgi.service.feature.FeatureBundle;
 
 /**
  * {@link FeatureBundle} specific assertions. Although this class is not final to allow Soft

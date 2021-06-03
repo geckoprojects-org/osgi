@@ -18,11 +18,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.osgi.test.cases.feature.assertj.FeatureAssert;
-import org.osgi.util.feature.BuilderFactory;
-import org.osgi.util.feature.Feature;
-import org.osgi.util.feature.FeatureBuilder;
-import org.osgi.util.feature.Features;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.BuilderFactory;
+import org.osgi.service.feature.Feature;
+import org.osgi.service.feature.FeatureBuilder;
+import org.osgi.service.feature.Features;
+import org.osgi.service.feature.ID;
 
 @Disabled
 public class FeaturesTest {

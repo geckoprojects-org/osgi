@@ -19,7 +19,7 @@
 package org.osgi.test.cases.feature.assertj;
 
 import org.assertj.core.api.AbstractObjectAssert;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.ID;
 
 /**
  * Abstract base class for {@link ID} specific assertions.

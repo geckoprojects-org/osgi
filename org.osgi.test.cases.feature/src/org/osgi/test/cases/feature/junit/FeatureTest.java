@@ -6,14 +6,14 @@ import static org.osgi.test.cases.feature.assertj.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.osgi.test.cases.feature.assertj.FeatureAssert;
-import org.osgi.util.feature.BuilderFactory;
-import org.osgi.util.feature.Feature;
-import org.osgi.util.feature.FeatureBuilder;
-import org.osgi.util.feature.FeatureBundle;
-import org.osgi.util.feature.FeatureConfiguration;
-import org.osgi.util.feature.FeatureExtension;
-import org.osgi.util.feature.Features;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.BuilderFactory;
+import org.osgi.service.feature.Feature;
+import org.osgi.service.feature.FeatureBuilder;
+import org.osgi.service.feature.FeatureBundle;
+import org.osgi.service.feature.FeatureConfiguration;
+import org.osgi.service.feature.FeatureExtension;
+import org.osgi.service.feature.Features;
+import org.osgi.service.feature.ID;
 
 public class FeatureTest {
 

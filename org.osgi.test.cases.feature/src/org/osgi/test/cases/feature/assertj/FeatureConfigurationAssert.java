@@ -18,7 +18,7 @@
 
 package org.osgi.test.cases.feature.assertj;
 
-import org.osgi.util.feature.FeatureConfiguration;
+import org.osgi.service.feature.FeatureConfiguration;
 
 /**
  * {@link FeatureConfiguration} specific assertions. Although this class is not final to allow Soft

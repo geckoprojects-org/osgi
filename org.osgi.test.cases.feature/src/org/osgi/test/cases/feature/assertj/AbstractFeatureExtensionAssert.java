@@ -24,8 +24,8 @@ import org.assertj.core.api.AbstractObjectAssert;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.InstanceOfAssertFactory;
 import org.assertj.core.api.ListAssert;
-import org.osgi.util.feature.FeatureExtension;
-import org.osgi.util.feature.ID;
+import org.osgi.service.feature.FeatureExtension;
+import org.osgi.service.feature.ID;
 
 /**
  * Abstract base class for {@link FeatureExtension} specific assertions -

@@ -32,7 +32,8 @@ public class Assertions {
 	 * @return the created assertion object.
 	 */
 	@org.assertj.core.util.CheckReturnValue
-	public static org.osgi.test.cases.feature.assertj.FeatureAssert assertThat(org.osgi.util.feature.Feature actual) {
+	public static org.osgi.test.cases.feature.assertj.FeatureAssert assertThat(
+			org.osgi.service.feature.Feature actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureAssert(actual);
 	}
 
@@ -45,7 +46,7 @@ public class Assertions {
 	 */
 	@org.assertj.core.util.CheckReturnValue
 	public static org.osgi.test.cases.feature.assertj.FeatureArtifactAssert assertThat(
-		org.osgi.util.feature.FeatureArtifact actual) {
+			org.osgi.service.feature.FeatureArtifact actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureArtifactAssert(actual);
 	}
 
@@ -58,7 +59,7 @@ public class Assertions {
 	 */
 	@org.assertj.core.util.CheckReturnValue
 	public static org.osgi.test.cases.feature.assertj.FeatureBundleAssert assertThat(
-		org.osgi.util.feature.FeatureBundle actual) {
+			org.osgi.service.feature.FeatureBundle actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureBundleAssert(actual);
 	}
 
@@ -71,7 +72,7 @@ public class Assertions {
 	 */
 	@org.assertj.core.util.CheckReturnValue
 	public static org.osgi.test.cases.feature.assertj.FeatureConfigurationAssert assertThat(
-		org.osgi.util.feature.FeatureConfiguration actual) {
+			org.osgi.service.feature.FeatureConfiguration actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureConfigurationAssert(actual);
 	}
 
@@ -84,7 +85,7 @@ public class Assertions {
 	 */
 	@org.assertj.core.util.CheckReturnValue
 	public static org.osgi.test.cases.feature.assertj.FeatureExtensionAssert assertThat(
-		org.osgi.util.feature.FeatureExtension actual) {
+			org.osgi.service.feature.FeatureExtension actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureExtensionAssert(actual);
 	}
 
@@ -96,7 +97,8 @@ public class Assertions {
 	 * @return the created assertion object.
 	 */
 	@org.assertj.core.util.CheckReturnValue
-	public static org.osgi.test.cases.feature.assertj.FeatureIDAssert assertThat(org.osgi.util.feature.ID actual) {
+	public static org.osgi.test.cases.feature.assertj.FeatureIDAssert assertThat(
+			org.osgi.service.feature.ID actual) {
 		return new org.osgi.test.cases.feature.assertj.FeatureIDAssert(actual);
 	}
 
