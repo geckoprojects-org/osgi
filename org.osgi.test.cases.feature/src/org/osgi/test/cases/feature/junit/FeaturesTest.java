@@ -12,20 +12,28 @@ import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONWriter;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.osgi.test.cases.feature.assertj.FeatureAssert;
 import org.osgi.service.feature.BuilderFactory;
 import org.osgi.service.feature.Feature;
 import org.osgi.service.feature.FeatureBuilder;
 import org.osgi.service.feature.Features;
 import org.osgi.service.feature.ID;
+import org.osgi.test.cases.feature.assertj.FeatureAssert;
+import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
 
-@Disabled
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
 public class FeaturesTest {
+
+	@InjectService(timeout = 200)
+	Features		service;
+
 	static final ID	ID_GAV		= new ID("g", "a", "v");
 	static final ID	ID_GAVT		= new ID("g", "a", "v", "t", null);
 	static final ID	ID_GAVTC	= new ID("g", "a", "v", "t", "c");
