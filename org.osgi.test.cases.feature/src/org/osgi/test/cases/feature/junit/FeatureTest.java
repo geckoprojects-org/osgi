@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.osgi.test.cases.feature.assertj.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.service.feature.BuilderFactory;
 import org.osgi.service.feature.Feature;
 import org.osgi.service.feature.FeatureBuilder;
@@ -15,10 +16,14 @@ import org.osgi.service.feature.FeatureService;
 import org.osgi.service.feature.ID;
 import org.osgi.test.cases.feature.assertj.FeatureAssert;
 import org.osgi.test.common.annotation.InjectService;
+import org.osgi.test.junit5.context.BundleContextExtension;
+import org.osgi.test.junit5.service.ServiceExtension;
 
+@ExtendWith(BundleContextExtension.class)
+@ExtendWith(ServiceExtension.class)
 public class FeatureTest {
 
-	@InjectService(timeout = 200)
+	@InjectService(timeout = 2000)
 	FeatureService service;
 	@Test
 	void Feature_isNotNull() throws Exception {

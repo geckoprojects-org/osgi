@@ -18,7 +18,9 @@ Import-Package: ${-signaturetest}, *
 	org.json; version=1.0.0,\
 	org.apache.geronimo.specs.geronimo-json_1.1_spec;version=latest,\
 	org.apache.johnzon.core;version=latest,\
-	org.osgi.impl.service.component; version=latest
+	org.osgi.impl.service.component; version=latest,\
+	org.osgi.impl.bundle.serviceloader; version=latest
+
 
 -runproperties = ${runproperties}
 
