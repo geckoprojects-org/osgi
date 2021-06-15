@@ -23,7 +23,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @ExtendWith(ServiceExtension.class)
 public class FeatureTest {
 
-	@InjectService(timeout = 2000)
+	@InjectService(timeout = 200)
 	FeatureService service;
 	@Test
 	void Feature_isNotNull() throws Exception {

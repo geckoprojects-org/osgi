@@ -29,7 +29,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
-public class FeaturesTest {
+public class FeatureServiceTest {
 
 	@InjectService(timeout = 200)
 	FeatureService	service;
@@ -37,6 +37,11 @@ public class FeaturesTest {
 	static final ID	ID_GAV		= new ID("g", "a", "v");
 	static final ID	ID_GAVT		= new ID("g", "a", "v", "t", null);
 	static final ID	ID_GAVTC	= new ID("g", "a", "v", "t", "c");
+
+	@Test
+	void featureService_isNotNull() throws Exception {
+		Assertions.assertThat(service).isNotNull();
+	}
 
 	@Nested
 	class BuilderFactoryTest {
