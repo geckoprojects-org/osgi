@@ -5,21 +5,24 @@ import static org.mockito.Mockito.mock;
 import static org.osgi.test.cases.feature.assertj.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import org.osgi.test.cases.feature.assertj.FeatureAssert;
 import org.osgi.service.feature.BuilderFactory;
 import org.osgi.service.feature.Feature;
 import org.osgi.service.feature.FeatureBuilder;
 import org.osgi.service.feature.FeatureBundle;
 import org.osgi.service.feature.FeatureConfiguration;
 import org.osgi.service.feature.FeatureExtension;
-import org.osgi.service.feature.Features;
+import org.osgi.service.feature.FeatureService;
 import org.osgi.service.feature.ID;
+import org.osgi.test.cases.feature.assertj.FeatureAssert;
+import org.osgi.test.common.annotation.InjectService;
 
 public class FeatureTest {
 
+	@InjectService(timeout = 200)
+	FeatureService service;
 	@Test
 	void Feature_isNotNull() throws Exception {
-		FeatureBuilder featureBuilder = createFeatureBuilderGAV();
+		FeatureBuilder featureBuilder = createFeatureBuilderGAV(service);
 		Feature feature = featureBuilder.build();
 		FeatureAssert featureAssert = assertThat(feature);
 		featureAssert.isNotNull();
@@ -32,7 +35,7 @@ public class FeatureTest {
 
 	@Test
 	void Feature_isImmutable() throws Exception {
-		FeatureBuilder featureBuilder = createFeatureBuilderGAV();
+		FeatureBuilder featureBuilder = createFeatureBuilderGAV(service);
 		Feature feature = featureBuilder.build();
 
 		// not sure that UnsupportedOperationException is thrown
@@ -55,8 +58,9 @@ public class FeatureTest {
 
 	}
 
-	private FeatureBuilder createFeatureBuilderGAV() {
-		BuilderFactory builderFactory = Features.getBuilderFactory();
+	private FeatureBuilder createFeatureBuilderGAV(
+			FeatureService featureService) {
+		BuilderFactory builderFactory = featureService.getBuilderFactory();
 		FeatureBuilder featureBuilder = builderFactory
 				.newFeatureBuilder(ID.fromMavenID("g:a:v"));
 		return featureBuilder;

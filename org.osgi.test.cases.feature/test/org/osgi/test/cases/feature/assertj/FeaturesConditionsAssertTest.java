@@ -22,6 +22,8 @@ import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
 
+import java.util.Optional;
+
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -93,13 +95,13 @@ public class FeaturesConditionsAssertTest implements ConditionAssert {
 		@Test
 		void testNameNull() throws Exception {
 
-			when(feature.getName()).thenReturn(null);
+			when(feature.getName()).thenReturn(Optional.empty());
 
 			// condition pass
 			passingHas(FeaturesConditions.FeatureConditions.nameNull(), feature);
 
 
-			when(feature.getName()).thenReturn("featureName");
+			when(feature.getName()).thenReturn(Optional.of("featureName"));
 
 			// condition fail
 			failingHas(FeaturesConditions.FeatureConditions.nameNull(), feature, "name <null>");

@@ -63,39 +63,48 @@ public interface FeaturesConditions {
 		}
 
 		static Condition<Feature> description(String description) {
-			return new Condition<Feature>(f -> Objects.equals(f.getDescription(), description), "description <%s>",
+			return new Condition<Feature>(
+					FeaturePredicates.description(description),
+					"description <%s>",
 				description);
 		}
 
 		static Condition<Feature> descriptionMatches(String pattern) {
-			return new Condition<Feature>(f -> Objects.nonNull(f.getDescription()) && f.getDescription()
-				.matches(pattern), "description match <%s>", pattern);
+			return new Condition<Feature>(
+					FeaturePredicates.descriptionMatches(pattern),
+					"description match <%s>", pattern);
 		}
 
 		static Condition<Feature> descriptionNull() {
-			return new Condition<>(f -> f.getDescription() == null, "description <null>");
+			return new Condition<>(f -> f.getDescription().isEmpty(),
+					"description <null>");
 		}
 
 		static Condition<Feature> license(String license) {
-			return new Condition<Feature>(f -> Objects.equals(f.getLicense(), license), "license <%s>", license);
+			return new Condition<Feature>(FeaturePredicates.license(license),
+					"license <%s>", license);
 		}
 
 		static Condition<Feature> licenseMatches(String pattern) {
-			return new Condition<Feature>(f -> Objects.nonNull(f.getLicense()) && f.getLicense()
-				.matches(pattern), "license match <%s>", pattern);
+			return new Condition<Feature>(
+					FeaturePredicates.licenseMatches(pattern),
+					"license match <%s>", pattern);
 		}
 
 		static Condition<Feature> licenseNull() {
-			return new Condition<>(f -> f.getLicense() == null, "license <null>");
+			return new Condition<>(f -> f.getLicense().isEmpty(),
+					"license <null>");
 		}
 
 		static Condition<Feature> name(String name) {
-			return new Condition<Feature>(f -> Objects.equals(f.getName(), name), "name <%s>", name);
+			return new Condition<Feature>(FeaturePredicates.name(name),
+					"name <%s>", name);
 		}
 
 		static Condition<Feature> nameMatches(String pattern) {
-			return new Condition<Feature>(f -> Objects.nonNull(f.getName()) && f.getName()
-				.matches(pattern), "name match <%s>", pattern);
+			return new Condition<Feature>(
+					FeaturePredicates.nameMatches(pattern), "name match <%s>",
+					pattern);
 		}
 
 		static Condition<Feature> nameNull() {
@@ -107,20 +116,25 @@ public interface FeaturesConditions {
 		}
 
 		static Condition<Feature> vendor(String vendor) {
-			return new Condition<Feature>(f -> Objects.equals(f.getVendor(), vendor), "vendor <%s>", vendor);
+			return new Condition<Feature>(FeaturePredicates.vendor(vendor),
+					"vendor <%s>", vendor);
 		}
 
 		static Condition<Feature> vendorMatches(String pattern) {
-			return new Condition<Feature>(f -> Objects.nonNull(f.getVendor()) && f.getVendor()
-				.matches(pattern), "vendor match <%s>", pattern);
+			return new Condition<Feature>(
+					FeaturePredicates.vendorMatches(pattern),
+					"vendor match <%s>", pattern);
 		}
 
 		static Condition<Feature> vendorNull() {
-			return new Condition<>(f -> f.getVendor() == null, "vendor <null>");
+			return new Condition<>(f -> f.getVendor().isEmpty(),
+					"vendor <null>");
 		}
 
-		static Condition<Feature> categoriesNull() {
-			return new Condition<>(f -> f.getCategories() == null,
+		static Condition<Feature> categoriesEmpty() {
+			return new Condition<>(
+					f -> f.getCategories() != null
+							&& f.getCategories().isEmpty(),
 					"categories must be null");
 		}
 
@@ -142,19 +156,19 @@ public interface FeaturesConditions {
 		}
 
 		static Condition<Feature> copyrightNull() {
-			return new Condition<>(f -> f.getCopyright() == null,
+			return new Condition<>(f -> f.getCopyright().isEmpty(),
 					"copyright must be null");
 		}
 
 		static Condition<Feature> copyright(String copyright) {
 			return new Condition<Feature>(
-					f -> Objects.equals(f.getCopyright(), copyright),
+					FeaturePredicates.copyright(copyright),
 					"copyright must be %s", copyright);
 		}
 
 		static Condition<Feature> copyrightMatches(String pattern) {
 			return new Condition<Feature>(
-					f -> f.getCopyright().matches(pattern),
+					FeaturePredicates.copyrightMatches(pattern),
 					"copyright must match %s", pattern);
 		}
 
@@ -165,26 +179,28 @@ public interface FeaturesConditions {
 
 		static Condition<Feature> docURL(String docURL) {
 			return new Condition<Feature>(
-					f -> Objects.equals(f.getDocURL(), docURL),
+					FeaturePredicates.docURL(docURL),
 					"docURL must be %s", docURL);
 		}
 
 		static Condition<Feature> docURLMatches(String pattern) {
-			return new Condition<Feature>(f -> f.getDocURL().matches(pattern),
+			return new Condition<Feature>(
+					FeaturePredicates.docURLMatches(pattern),
 					"docURL must match %s", pattern);
 		}
 
 		static Condition<Feature> scmNull() {
-			return new Condition<>(f -> f.getSCM() == null, "scm must be null");
+			return new Condition<>(f -> f.getSCM().isEmpty(),
+					"scm must be empty");
 		}
 
 		static Condition<Feature> scm(String scm) {
-			return new Condition<Feature>(f -> Objects.equals(f.getSCM(), scm),
+			return new Condition<Feature>(FeaturePredicates.scm(scm),
 					"scm must be %s", scm);
 		}
 
 		static Condition<Feature> scmMatches(String pattern) {
-			return new Condition<Feature>(f -> f.getSCM().matches(pattern),
+			return new Condition<Feature>(FeaturePredicates.scmMatches(pattern),
 					"scm must match %s", pattern);
 		}
 	}
@@ -193,12 +209,22 @@ public interface FeaturesConditions {
 
 		static Condition<FeatureConfiguration> factoryConfiguration() {
 
-			return new Condition<FeatureConfiguration>(f -> Objects.nonNull(f.getFactoryPid()), "factoryConfiguration");
+			return new Condition<FeatureConfiguration>(
+					f -> f.getFactoryPid().isEmpty(), "factoryConfiguration");
 		}
 
 		static Condition<FeatureConfiguration> factoryPid(String text) {
-			return new Condition<FeatureConfiguration>(f -> Objects.equals(f.getFactoryPid(), text), "factoryPid <%s>",
-				text);
+			return new Condition<FeatureConfiguration>(
+					FeaturePredicates.ConfigurationsPredicates.factoryPid(text),
+					"factoryPid <%s>", text);
+		}
+
+		static Condition<FeatureConfiguration> factoryPidMatches(
+				String pattern) {
+			return new Condition<FeatureConfiguration>(
+					FeaturePredicates.ConfigurationsPredicates
+							.factoryPidMatches(pattern),
+					"factoryPid matches <%s>", pattern);
 		}
 
 		static Condition<FeatureConfiguration> pid(String text) {

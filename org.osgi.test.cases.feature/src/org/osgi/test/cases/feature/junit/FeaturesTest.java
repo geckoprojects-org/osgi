@@ -20,7 +20,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.osgi.service.feature.BuilderFactory;
 import org.osgi.service.feature.Feature;
 import org.osgi.service.feature.FeatureBuilder;
-import org.osgi.service.feature.Features;
+import org.osgi.service.feature.FeatureService;
 import org.osgi.service.feature.ID;
 import org.osgi.test.cases.feature.assertj.FeatureAssert;
 import org.osgi.test.common.annotation.InjectService;
@@ -32,7 +32,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 public class FeaturesTest {
 
 	@InjectService(timeout = 200)
-	Features		service;
+	FeatureService	service;
 
 	static final ID	ID_GAV		= new ID("g", "a", "v");
 	static final ID	ID_GAVT		= new ID("g", "a", "v", "t", null);
@@ -43,7 +43,7 @@ public class FeaturesTest {
 
 		@Test
 		void getBuilderFactory_isNotNull() throws Exception {
-			BuilderFactory builderFactory = Features.getBuilderFactory();
+			BuilderFactory builderFactory = service.getBuilderFactory();
 			Assertions.assertThat(builderFactory).isNotNull();
 		}
 
@@ -57,7 +57,7 @@ public class FeaturesTest {
 						.assertThatExceptionOfType(
 								IllegalArgumentException.class)
 						.isThrownBy(() -> {
-							Features.getBuilderFactory()
+							service.getBuilderFactory()
 									.newBundleBuilder(ID_GAV)
 									.addMetadata(null, "value");
 						})
@@ -74,7 +74,7 @@ public class FeaturesTest {
 						.assertThatExceptionOfType(
 								IllegalArgumentException.class)
 						.isThrownBy(() -> {
-							Features.getBuilderFactory()
+							service.getBuilderFactory()
 									.newBundleBuilder(ID_GAV)
 									.addMetadata(id, "value");
 						})
@@ -92,7 +92,7 @@ public class FeaturesTest {
 						.assertThatExceptionOfType(
 								IllegalArgumentException.class)
 						.isThrownBy(() -> {
-							Features.getBuilderFactory()
+							service.getBuilderFactory()
 									.newBundleBuilder(ID_GAV)
 									.addMetadata(id, "value")
 									.build();
@@ -111,19 +111,19 @@ public class FeaturesTest {
 		class ReadFeatureIncompleteTest {
 			@Test
 			void null_shouldThrow() throws Exception {
-				assertThrows(Throwable.class, () -> Features.readFeature(null));
+				assertThrows(Throwable.class, () -> service.readFeature(null));
 			}
 
 			@Test
 			void empty_shouldThrow() throws Exception {
 				assertThrows(Throwable.class,
-						() -> Features.readFeature(new StringReader("")));
+						() -> service.readFeature(new StringReader("")));
 			}
 
 			@Test
 			void incomplete_id_shouldThrow() throws Exception {
 				assertThrows(Throwable.class,
-						() -> Features.readFeature(new StringReader("")));
+						() -> service.readFeature(new StringReader("")));
 			}
 		}
 
@@ -147,7 +147,7 @@ public class FeaturesTest {
 						.endObject()
 						.endObject();
 
-				assertThrows(Throwable.class, () -> Features
+				assertThrows(Throwable.class, () -> service
 						.readFeature(new StringReader(sw.toString())));
 			}
 
@@ -169,7 +169,7 @@ public class FeaturesTest {
 						.endObject()
 						.endObject();
 
-				assertThrows(Throwable.class, () -> Features
+				assertThrows(Throwable.class, () -> service
 						.readFeature(new StringReader(sw.toString())));
 			}
 
@@ -194,7 +194,7 @@ public class FeaturesTest {
 						.endObject()
 						.endObject();
 
-				assertThrows(Throwable.class, () -> Features
+				assertThrows(Throwable.class, () -> service
 						.readFeature(new StringReader(sw.toString())));
 			}
 
@@ -219,7 +219,7 @@ public class FeaturesTest {
 						.endObject()
 						.endObject();
 
-				assertThrows(Throwable.class, () -> Features
+				assertThrows(Throwable.class, () -> service
 						.readFeature(new StringReader(sw.toString())));
 			}
 
@@ -244,7 +244,7 @@ public class FeaturesTest {
 						.endObject()
 						.endObject();
 
-				assertThrows(Throwable.class, () -> Features
+				assertThrows(Throwable.class, () -> service
 						.readFeature(new StringReader(sw.toString())));
 			}
 
@@ -272,7 +272,7 @@ public class FeaturesTest {
 						.value("c")
 						.endObject()
 						.endObject();
-				Feature feature = Features
+				Feature feature = service
 						.readFeature(new StringReader(sw.toString()));
 
 				assertThat(feature).hasIDThat().isEqualTo(ID_GAVTC);
@@ -301,7 +301,7 @@ public class FeaturesTest {
 					.endObject()
 					.endObject();
 
-			Feature feature = Features
+			Feature feature = service
 					.readFeature(new StringReader(sw.toString()));
 
 			FeatureAssert featureAssert = assertThat(feature);
@@ -325,18 +325,18 @@ public class FeaturesTest {
 		@Test
 		void null_shouldThrow() throws Exception {
 			assertThrows(Throwable.class,
-					() -> Features.writeFeature(null, null));
+					() -> service.writeFeature(null, null));
 
 		}
 
 		@SuppressWarnings("unchecked")
 		@Test
 		void write_ID_gav() throws Exception {
-			FeatureBuilder featureBuilder = Features.getBuilderFactory()
+			FeatureBuilder featureBuilder = service.getBuilderFactory()
 					.newFeatureBuilder(ID_GAV);
 			Feature feature = featureBuilder.build();
 
-			JSONObject jsonObject = toJsonObject(feature);
+			JSONObject jsonObject = toJsonObject(service, feature);
 
 			Assertions.assertThat(jsonObject.keys())
 					.asList()
@@ -360,11 +360,11 @@ public class FeaturesTest {
 		@SuppressWarnings("unchecked")
 		@Test
 		void write_ID_gavtc() throws Exception {
-			FeatureBuilder featureBuilder = Features.getBuilderFactory()
+			FeatureBuilder featureBuilder = service.getBuilderFactory()
 					.newFeatureBuilder(ID_GAVTC);
 			Feature feature = featureBuilder.build();
 
-			JSONObject json = toJsonObject(feature);
+			JSONObject json = toJsonObject(service, feature);
 
 			Assertions.assertThat(json.keys())
 					.asList()
@@ -391,10 +391,11 @@ public class FeaturesTest {
 
 	}
 
-	static JSONObject toJsonObject(Feature feature)
+	static JSONObject toJsonObject(FeatureService featureService,
+			Feature feature)
 			throws IOException, JSONException {
 		Writer writer = new StringWriter();
-		Features.writeFeature(feature, writer);
+		featureService.writeFeature(feature, writer);
 		JSONObject jsonObject = new JSONObject(writer.toString());
 		return jsonObject;
 	}
