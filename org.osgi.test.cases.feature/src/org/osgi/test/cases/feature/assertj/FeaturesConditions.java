@@ -339,15 +339,28 @@ public interface FeaturesConditions {
 		}
 
 		static Condition<ID> classifier(String classifier) {
-			return new Condition<ID>(f -> Objects.equals(f.getClassifier(), classifier), "classifier <%s>", classifier);
+			return new Condition<ID>(
+					FeaturePredicates.IDPredicates.classifier(classifier),
+					"classifier <%s>", classifier);
+		}
+
+		static Condition<ID> classifierEmpty() {
+			return new Condition<ID>(f -> f.getClassifier().isEmpty(),
+					"classifier is empty");
 		}
 
 		static Condition<ID> groupId(String groupId) {
 			return new Condition<ID>(f -> Objects.equals(f.getGroupId(), groupId), "groupId <%s>", groupId);
 		}
-
+		;
 		static Condition<ID> type(String type) {
-			return new Condition<ID>(f -> Objects.equals(f.getType(), type), "type <%s>", type);
+			return new Condition<ID>(FeaturePredicates.IDPredicates.type(type),
+					"type <%s>", type);
+		}
+
+		static Condition<ID> typeEmpty() {
+			return new Condition<ID>(f -> f.getType().isEmpty(),
+					"type is empty");
 		}
 
 		static Condition<ID> version(String version) {

@@ -66,6 +66,17 @@ public abstract class AbstractFeatureIDAssert<S extends AbstractFeatureIDAssert<
 	}
 
 	/**
+	 * Verifies that the actual ID's classifier is empty.
+	 *
+	 * @return this assertion object.
+	 */
+	public S hasEmptyClassifier()
+	{
+		return isNotNull()
+				.has(FeaturesConditions.IDConditions.classifierEmpty());
+	}
+
+	/**
 	 * Verifies that the actual ID's groupId is equal to the given one.
 	 *
 	 * @param groupId the given groupId to compare the actual ID's groupId to.
@@ -87,6 +98,16 @@ public abstract class AbstractFeatureIDAssert<S extends AbstractFeatureIDAssert<
 	 */
 	public S hasType(String type) {
 		return isNotNull().has(FeaturesConditions.IDConditions.type(type));
+	}
+
+	/**
+	 * Verifies that the actual ID's type is empty.
+	 *
+	 * @return this assertion object.
+	 * @throws AssertionError - if the actual ID's type is not empty
+	 */
+	public S hasEmptyType() {
+		return isNotNull().has(FeaturesConditions.IDConditions.typeEmpty());
 	}
 
 	/**

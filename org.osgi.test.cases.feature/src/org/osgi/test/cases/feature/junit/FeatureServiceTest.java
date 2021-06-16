@@ -86,7 +86,7 @@ public class FeatureServiceTest {
 						.withMessageMatching(".*");
 			}
 
-			// TODO: when sould the exception raise
+			// TODO: when should the exception raise
 			@ParameterizedTest
 			@ValueSource(strings = {
 					"id", "Id", "iD", "ID"
@@ -401,6 +401,7 @@ public class FeatureServiceTest {
 			throws IOException, JSONException {
 		Writer writer = new StringWriter();
 		featureService.writeFeature(feature, writer);
+		System.out.println(writer);
 		JSONObject jsonObject = new JSONObject(writer.toString());
 		return jsonObject;
 	}

@@ -30,8 +30,8 @@ public class FeatureIDTest {
 		assertThat(id).hasGroupId("g")
 				.hasArtifactId("a")
 				.hasVersion("v")
-				.hasType(null)
-				.hasClassifier(null)
+				.hasEmptyType()
+				.hasEmptyClassifier()
 				.isEqualTo(ID_G_A_V)
 				.hasToString(G_A_V);// Not explicit specified
 
@@ -44,8 +44,8 @@ public class FeatureIDTest {
 		assertThat(id).hasGroupId("g")
 				.hasArtifactId("a")
 				.hasVersion("v")
-				.hasType(null)
-				.hasClassifier(null)
+				.hasEmptyType()
+				.hasEmptyClassifier()
 				.isEqualTo(ID_G_A_V)
 				.hasToString(G_A_V);
 
@@ -59,7 +59,7 @@ public class FeatureIDTest {
 				.hasArtifactId("a")
 				.hasVersion("v")
 				.hasType("t")
-				.hasClassifier(null)
+				.hasEmptyClassifier()
 				.isEqualTo(ID_G_A_V_T)
 				.hasToString(G_A_V_T);// Not explicit specified
 	}
@@ -118,8 +118,8 @@ public class FeatureIDTest {
 		assertThat(id).hasGroupId("g")
 				.hasArtifactId("a")
 				.hasVersion("v")
-				.hasType(null)
-				.hasClassifier(null)
+				.hasEmptyType()
+				.hasEmptyClassifier()
 				.isEqualTo(ID_G_A_V)
 				.hasToString(G_A_V);// Not explicit specified
 
@@ -132,7 +132,7 @@ public class FeatureIDTest {
 				.hasArtifactId("a")
 				.hasVersion("v")
 				.hasType("t")
-				.hasClassifier(null)
+				.hasEmptyClassifier()
 				.isEqualTo(ID_G_A_V_T)
 				.hasToString(G_A_V_T);// Not explicit specified
 	}
