@@ -34,9 +34,9 @@ import org.osgi.service.feature.FeatureConstants;
  * <p>
  * This annotation is applied to several of the Feature component property
  * annotations meaning that it does not normally need to be applied to
- * Declarative Services components which use Features.
+ * Declarative Services components which use the Feature Service.
  * 
- * @author $Id: $
+ * @author $Id$
  */
 @Documented
 @Retention(RetentionPolicy.CLASS)

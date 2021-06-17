@@ -21,7 +21,7 @@ package org.osgi.service.feature;
 /**
  * Defines standard constants for the Feature services.
  * 
- * @author $Id: $
+ * @author $Id$
  */
 public final class FeatureConstants {
 	private FeatureConstants() {
@@ -29,12 +29,12 @@ public final class FeatureConstants {
 	}
 
 	/**
-	 * The name of the implementation capability for the Features specification
+	 * The name of the implementation capability for the Feature specification
 	 */
-	public static final String	FEATURE_IMPLEMENTATION			= "osgi.features";
+	public static final String	FEATURE_IMPLEMENTATION			= "osgi.feature";
 
 	/**
-	 * The version of the implementation capability for the Features
+	 * The version of the implementation capability for the Feature
 	 * specification
 	 */
 	public static final String FEATURE_SPECIFICATION_VERSION = "1.0.0";

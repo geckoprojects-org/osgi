@@ -26,7 +26,7 @@
  * are only used at build-time.
  * <p>
  * 
- * @author $Id: $
+ * @author $Id$
  */
 
 @Version(FeatureConstants.FEATURE_SPECIFICATION_VERSION)
