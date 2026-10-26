@@ -1,3 +1,7 @@
+> [!CAUTION]
+> **This repository is deprecated and archived.**
+> It is no longer maintained.
+
 # OSGi
 
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/osgi/osgi/badge)](https://securityscorecards.dev/viewer/?uri=github.com/osgi/osgi)
